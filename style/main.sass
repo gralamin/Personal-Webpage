@@ -1,0 +1,324 @@
+/* main.sass */
+/* I have not reduced down a lot of this yet. TODO. */
+$site-width: 960px
+$color-light1: #FF8040
+$color-light2: #FFA273
+$color-main: #FF5600
+$color-dark1: #BF6030
+$color-dark2: #A63800
+$bright-font: #FFFFFF
+$dark-font: #000000
+$small-font-size: 16px
+$header-hover: #EEEEEE
+$content-background: #FFFFFF
+
+$info-color: #00529B
+$info-background-color: #BDE5F8
+$success-color: #4F8A10
+$success-background-color: #DFF2BF
+$warning-color: #9F6000
+$warning-background-color: #FEEFB3
+$error-color: #D8000C
+$error-background-color: #FFBABA
+$circle-year: 1.4583em*3
+
+body
+  margin: auto
+  background-image: linear-gradient(top, $color-light2 26%, $color-light1 65%)
+  background-image: -o-linear-gradient(top, $color-light2 26%, $color-light1 65%)
+  background-image: -moz-linear-gradient(top, $color-light2 26%, $color-light1 65%)
+  background-image: -webkit-linear-gradient(top, $color-light2 26%, $color-light1 65%)
+  background-image: -ms-linear-gradient(top, $color-light2 26%, $color-light1 65%)
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.26, $color-light2), color-stop(0.65, $color-light1))
+  background-repeat: no-repeat
+  background-color: $color-light1
+  font-size: $small-font-size
+  font-family: 'Copse', serif
+  color: $dark-font
+
+a:link
+  color: $color-dark1
+
+a:visited
+  color: $color-dark2
+
+a:active
+  color: $color-dark2
+
+a:hover
+  color: $color-main
+
+#top
+  height: 4.938em
+  width: 100%
+  background-color: $color-dark1
+  border-style: none none dotted none
+  border-width: thin
+  border-color: $bright-font
+
+#navbar
+  width: $site-width
+  height: 5em
+  margin-left: auto
+  margin-right: auto
+  margin-top: -3.125em
+  margin-bottom: 1.875em
+  background-color: $color-main
+  color: $bright-font
+  vertical-align: middle
+  text-align: right
+
+#navbar a:link
+  color: $bright-font
+  text-decoration: none
+
+#navbar a:visited
+  color: $bright-font
+  text-decoration: none
+
+#navbar a:hover
+  color: $header-hover
+  text-decoration: none
+
+#navbar a:active
+  color: $bright-font
+  text-decoration: none
+
+#inner-navbar
+  border-style: dotted
+  border-width: thin
+  border-color: $bright-font
+  height: 4.5em
+  width: 59.5em
+  margin-left: 0.250em
+  margin-right: 0.250em
+  margin-top: 0em
+  margin-bottom: 0.250em
+
+.vertical-center
+  display: box
+  display: -moz-box
+  display: -webkit-box
+  box-flex: 1
+  -moz-box-flex: 1
+  -webkit-box-flex: 1
+  box-orient: horizontal
+  -moz-box-orient: horizontal
+  -webkit-box-orient: horizontal
+  box-align: center
+  -moz-box-align: center
+  -webkit-box-align: center
+  box-pack: center
+  -moz-box-pack: center
+  -webkit-box-pack: center
+
+.circle.vertical-center
+  display: box
+  display: -moz-box
+  display: -webkit-box
+  box-flex: 1
+  -moz-box-flex: 1
+  -webkit-box-flex: 1
+  box-orient: vertical
+  -moz-box-orient: vertical
+  -webkit-box-orient: vertical
+  box-align: center
+  -moz-box-align: center
+  -webkit-box-align: center
+  box-pack: center
+  -moz-box-pack: center
+  -webkit-box-pack: center
+
+#inner-navbar-block
+  height: 0.250em
+
+.name
+  font-size: 36px
+  width: 11em
+
+.left
+  float: left
+  text-align: left
+
+#inner-navbar .left
+  text-align: center
+
+.right
+  float: right
+  text-align: right
+
+.clear-both
+  clear: both
+
+.header-seperator
+  color: $color-dark1
+  font-size: 30px
+  width: 3em
+
+.seperator
+  width: 3em
+  text-align: center
+
+#top-warning
+  position: fixed
+  z-index: 5
+  background-color: $warning-background-color
+  color: $warning-color
+  padding: 0.938em 0.625em 0.938em 3.125em
+
+.content
+  min-height: 10em
+  background-color: $content-background
+  color: $dark-font
+  width: $site-width - 20px
+  margin-left: auto
+  margin-right: auto
+
+.inner-content
+  padding-left: 0.625em
+  padding-right: 0.625em
+  padding-top: 0.125em
+  padding-bottom: 0.125em
+
+.footer
+  width: $site-width
+  background-color: $color-dark2
+  color: $bright-font
+  margin-top: 1.875em
+  margin-left: auto
+  margin-right: auto
+  text-align: center
+  min-height: 3em
+  padding-top: 0.75em
+  padding-bottom: 0.75em
+
+.footer a:link
+  color: $color-light1
+
+.footer a:visited
+  color: $color-light2
+
+.footer a:active
+  color: $color-light2
+
+.inner-footer
+  margin-left: auto
+  margin-right: auto
+  width: 50%
+  font-size: 12px
+
+h1
+  color: $color-dark1
+
+h2
+  color: $color-dark2
+
+.map
+  float: left
+  height: 38.5em
+  width: 60%
+
+.map-right
+  float: right
+  width: 35%
+
+.circle
+  float: left
+
+#circle1
+  $circle1-dia: $circle-year*6
+  width: $circle1-dia
+  height: $circle1-dia
+  background: $color-main
+  -moz-border-radius: $circle1-dia/2
+  -webkit-border-radius: $circle1-dia/2
+  border-radius: $circle1-dia/2
+  color: $bright-font
+  font-variant: small-caps
+  text-align: center
+
+#circle2
+  $circle2-dia: $circle-year * 3
+  width: $circle2-dia
+  height: $circle2-dia
+  background: $color-main
+  -moz-border-radius: $circle2-dia/2
+  -webkit-border-radius: $circle2-dia/2
+  border-radius: $circle2-dia/2
+  color: $bright-font
+  font-variant: small-caps
+  text-align: center
+
+#circle2-first
+  $circle2-dia: $circle-year * 3
+  width: $circle2-dia
+  height: $circle2-dia
+  background: $color-dark1
+  -moz-border-radius: $circle2-dia/2
+  -webkit-border-radius: $circle2-dia/2
+  border-radius: $circle2-dia/2
+  color: $bright-font
+  font-variant: small-caps
+  text-align: center
+
+#circle3
+  $circle3-dia: $circle-year * 5
+  width: $circle3-dia
+  height: $circle3-dia
+  background: $color-main
+  -moz-border-radius: $circle3-dia/2
+  -webkit-border-radius: $circle3-dia/2
+  border-radius: $circle3-dia/2
+  color: $bright-font
+  font-variant: small-caps
+  text-align: center
+
+#circle4
+  $circle4-dia: $circle-year * 1.25
+  width: $circle4-dia
+  height: $circle4-dia
+  background: $color-dark1
+  -moz-border-radius: $circle4-dia/2
+  -webkit-border-radius: $circle4-dia/2
+  border-radius: $circle4-dia/2
+  color: $bright-font
+  font-variant: small-caps
+  text-align: center
+
+#circle5
+  $circle5-dia: $circle-year * 0.25
+  width: $circle5-dia
+  height: $circle5-dia
+  background: $color-dark1
+  -moz-border-radius: $circle5-dia/2
+  -webkit-border-radius: $circle5-dia/2
+  border-radius: $circle5-dia/2
+  color: $bright-font
+  font-variant: small-caps
+  text-align: center
+
+.school-name
+  font-size: 20px
+
+.work-item
+  float: left
+  width: 14.5em
+  height: 13.5em
+  margin-left: 0.25em
+  margin-right: 0.25em
+  background-color: $color-dark2
+
+.work-item img
+  opacity: 0.75
+
+.inner-work-item
+  width: 13em
+  margin-left: auto
+  margin-right: auto
+  margin-top: 0.5em
+
+.work-item:hover
+  background-color: $color-dark1
+
+.work-item:hover img
+  opacity: 1
