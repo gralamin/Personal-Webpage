@@ -19,22 +19,22 @@
             <div id="inner-navbar-block"></div>
             <div id="inner-navbar" class="vertical-center">
                 <div class="left name vertical-center">
-                    <a href="/test2/index.php">Glen Nelson</a>
+                    <a href="/index.php">Glen Nelson</a>
                 </div>
                 <div class="right">
-                    <a href="/test2/?p=work">Work</a>
+                    <a href="/?p=work">Work</a>
                 </div>
                 <div class="right seperator">
                     <span class="header-seperator">|</span>
                 </div>
                 <div class="right">
-                    <a href="/test2/?p=about">About</a>
+                    <a href="/?p=about">About</a>
                 </div>
                 <div class="right seperator">
                     <span class="header-seperator">|</span>
                 </div>
                 <div class="right">
-                    <a href="/test2/?p=contact">Contact</a>
+                    <a href="/?p=contact">Contact</a>
                 </div>
                 <div class="right seperator">
                     <span class="header-seperator">|</span>
