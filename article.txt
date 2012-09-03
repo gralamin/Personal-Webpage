@@ -1,0 +1,19 @@
+My Personal Webpage source code.  This article mostly exists as a link page and
+test page.  Below is some text that should be automatically parsed. Below it,
+you may see a 'show source' button. Clicking on that should reveal the page source.
+
+Double Newlines should be used to determine new divs. *This text should be
+bolded*. /This text should
+be italizied/. _and this should
+be underlined_.
+New lines (inserted inside the text) should not interfere with its display.
+
+{style: 'color: red'} This paragraph should be in red text.
+
+* List item 1
+* List item 2
+
+# Numbered list 1
+# Numbered list 2
+
+Finally have a link back to the [index|Home Page]. Or perhaps to this article [article=1].
