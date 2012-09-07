@@ -1,8 +1,7 @@
 <?php
 /* Simple php site that reads the url and opens an image based on the
  * url. */
-
-require_once("models.php");
+require_once("database.php");
 
 $id = NULL;
 if (!empty($_GET)) {

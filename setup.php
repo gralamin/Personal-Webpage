@@ -7,7 +7,11 @@
 <?php
 require_once("colors.php");
 require_once("settings.php");
-require_once("models.php");
+require_once("models".DIRECTORY_SEPARATOR."author.php");
+require_once("models".DIRECTORY_SEPARATOR."workGallery.php");
+require_once("models".DIRECTORY_SEPARATOR."workItem.php");
+require_once("models".DIRECTORY_SEPARATOR."workText.php");
+require_once("models".DIRECTORY_SEPARATOR."main.php");
 
 myPrint("Step 1: Please edit settings.php to have a user name, password, and database.", ColorEnum::BLUE);
 
