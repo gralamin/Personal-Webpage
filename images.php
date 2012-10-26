@@ -13,7 +13,7 @@ if (!empty($_GET)) {
 if ($id) {
     /* Until I get an object to represent this, query directly */
     $db = Database::getInstance();
-    if ($result = $db->query("SELECT * FROM WorkGallery WHERE id = " . $id)) {
+    if ($result = $db->query("SELECT img FROM WorkGallery WHERE id = " . $id)) {
         $row = $result->fetch_array();
         echo $row['img'];
     } else {

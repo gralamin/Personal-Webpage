@@ -94,7 +94,7 @@ if ($myWorkImage->createRow(array('work_id' => 1,
 }
 
 myPrint("Attempting to display image with id 1:", ColorEnum::PURPLE);
-print("<img src=\"/test2/images.php?id=1\">");
+print("<img src=\"/test/images.php?id=1\">");
 
 myPrint("Install Successful!", ColorEnum::GREEN);
 
