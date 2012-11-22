@@ -35,6 +35,24 @@ abstract class Model {
         return False;
     }
 
+    protected function getValue($bindParam, $column, $conditionalColumn) {
+        $con = Database::getInstance();
+        $query = "SELECT name FROM " . $this->table_name . "WHERE id = " . $id;
+        $stmt = $con->prepare($query);
+        $stmt = $bindParam->bind($stmt);
+        $rows = [];
+        if (!$stmt->execute()) {
+            print("<br>Retriving value failed " . $con->getError());
+        } else {
+            while ($row = $stmt->fetch()) {
+                $rows->append($row);
+            }
+        }
+        $stmt->close();
+        $con->close();
+        return $rows;
+    }
+
     protected function insertValues($bindParam, $columns, $blobs = NULL) {
         $con = Database::getInstance();
         $status = True;

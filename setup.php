@@ -7,6 +7,7 @@
 <?php
 require_once("colors.php");
 require_once("settings.php");
+require_once("renderer.php");
 require_once("models".DIRECTORY_SEPARATOR."author.php");
 require_once("models".DIRECTORY_SEPARATOR."workGallery.php");
 require_once("models".DIRECTORY_SEPARATOR."workItem.php");
@@ -82,8 +83,12 @@ if ($myWorkText->createRow(array('work_id' => 1,
 }
 
 myPrint("Attempting to display work text in a pre tag", ColorEnum::PURPLE);
-$text = $myWorkText->retrieveText(1);
-print("<pre>" . $text . "</pre>");
+print("<div class='article'>");
+renderArticle(1, FALSE);
+print("</div>");
+print("<div class='article-src'>");
+renderArticle(1, TRUE);
+print("</div>");
 
 $myWorkImage = new WorkGallery();
 if ($myWorkImage->createRow(array('work_id' => 1,

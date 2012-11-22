@@ -8,7 +8,7 @@ be italizied/. _and this should
 be underlined_.
 New lines (inserted inside the text) should not interfere with its display.
 
-{style: 'color: red'} This paragraph should be in red text.
+{style='color: red'} This paragraph should be in red text.
 
 * List item 1
 * List item 2

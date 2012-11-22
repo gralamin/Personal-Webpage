@@ -27,6 +27,20 @@ class WorkItem extends Model {
         $bindParam->add('i', $array['author_id']);
         return $this->insertValues($bindParam, "name, repository_url, submission_date, author_id");
     }
+
+    public function getTitle($id) {
+        $db = Database::getInstance();
+        $query = "SELECT name FROM WorkItem WHERE id = " . $id;
+        $ret = "Invalid article";
+        if ($result = $db->query($query)) {
+            $row = $result->fetch_array();
+            $ret = $row['name'];
+        } else {
+            print $db->getError();
+        }
+        $db->close();
+        return $ret;
+    }
 }
 
 ?>

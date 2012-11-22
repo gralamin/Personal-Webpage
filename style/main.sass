@@ -11,6 +11,7 @@ $dark-font: #000000
 $small-font-size: 16px
 $header-hover: #EEEEEE
 $content-background: #FFFFFF
+$font-name: "Copse"
 
 $info-color: #00529B
 $info-background-color: #BDE5F8
@@ -22,129 +23,129 @@ $error-color: #D8000C
 $error-background-color: #FFBABA
 $circle-year: 1.4583em*3
 
+$small-height: 0.250em
+$small-margin: 0.250em
+$large-width: 13em
+$small-width: 3em
+
+$large-font: 20px
+$huge-font: 36px
+
+@mixin linear-gradient($start, $firstColor, $firstPercent, $secondColor, $secondPercent)
+  background:
+    image: linear-gradient($start, $firstColor $firstPercent + "%", $secondColor $secondPercent + "%")
+    image: -o-linear-gradient($start, $firstColor $firstPercent + "%", $secondColor $secondPercent + "%")
+    image: -moz-linear-gradient($start, $firstPercent + "%", $secondColor $secondPercent + "%")
+    image: -webkit-linear-gradient($start, $firstPercent + "%", $secondColor $secondPercent + "%")
+    image: -ms-linear-gradient($start, $firstPercent + "%", $secondColor $secondPercent + "%")
+    image: -webkit-gradient(linear, left top, left bottom, color-stop($firstPercent/100, $firstColor), color-stop($secondPercent/100, $secondColor))
+
 body
   margin: auto
-  background-image: linear-gradient(top, $color-light2 26%, $color-light1 65%)
-  background-image: -o-linear-gradient(top, $color-light2 26%, $color-light1 65%)
-  background-image: -moz-linear-gradient(top, $color-light2 26%, $color-light1 65%)
-  background-image: -webkit-linear-gradient(top, $color-light2 26%, $color-light1 65%)
-  background-image: -ms-linear-gradient(top, $color-light2 26%, $color-light1 65%)
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.26, $color-light2), color-stop(0.65, $color-light1))
-  background-repeat: no-repeat
-  background-color: $color-light1
-  font-size: $small-font-size
-  font-family: 'Copse', serif
+  @include linear-gradient(top, $color-light2, 26, $color-light1, 65)
+  background:
+    repeat: no-repeat
+    color: $color-light1
+  font:
+    size: $small-font-size
+    family: $font-name, serif
   color: $dark-font
 
-a:link
-  color: $color-dark1
-
-a:visited
-  color: $color-dark2
-
-a:active
-  color: $color-dark2
-
-a:hover
-  color: $color-main
+a
+  &:link
+    color: $color-dark1
+  &:visited
+    color: $color-dark2
+  &:active
+    color: $color-dark2
+  &:hover
+    color: $color-main
 
 #top
   height: 4.938em
   width: 100%
   background-color: $color-dark1
-  border-style: none none dotted none
-  border-width: thin
-  border-color: $bright-font
+  border:
+    style: none none dotted none
+    width: thin
+    color: $bright-font
 
 #navbar
   width: $site-width
   height: 5em
-  margin-left: auto
-  margin-right: auto
-  margin-top: -3.125em
-  margin-bottom: 1.875em
+  margin:
+    left: auto
+    right: auto
+    top: -3.125em
+    bottom: 1.875em
   background-color: $color-main
   color: $bright-font
   vertical-align: middle
   text-align: right
-
-#navbar a:link
-  color: $bright-font
-  text-decoration: none
-
-#navbar a:visited
-  color: $bright-font
-  text-decoration: none
-
-#navbar a:hover
-  color: $header-hover
-  text-decoration: none
-
-#navbar a:active
-  color: $bright-font
-  text-decoration: none
+  a:link
+    color: $bright-font
+    text-decoration: none
+  a:visited
+    color: $bright-font
+    text-decoration: none
+  a:hover
+    color: $header-hover
+    text-decoration: none
+  a:active
+    color: $bright-font
+    text-decoration: none
 
 #inner-navbar
-  border-style: dotted
-  border-width: thin
-  border-color: $bright-font
+  border:
+    style: dotted
+    width: thin
+    color: $bright-font
   height: 4.5em
   width: 59.5em
-  margin-left: 0.250em
-  margin-right: 0.250em
-  margin-top: 0em
-  margin-bottom: 0.250em
+  margin:
+    left: $small-margin
+    right: $small-margin
+    top: 0em
+    bottom: $small-margin
+  .left
+    text-align: center
+
+@mixin box($flex, $orient, $align, $pack)
+  display: box
+  display: -moz-box
+  display: -webkit-box
+  box-flex: $flex
+  -moz-box-flex: $flex
+  -webkit-box-flex: $flex
+  box-orient: $orient
+  -moz-box-orient: $orient
+  -webkit-box-orient: $orient
+  box-align: $align
+  -moz-box-align: $align
+  -webkit-box-align: $align
+  box-pack: $pack
+  -moz-box-pack: $pack
+  -webkit-box-pack: $pack
 
 .vertical-center
-  display: box
-  display: -moz-box
-  display: -webkit-box
-  box-flex: 1
-  -moz-box-flex: 1
-  -webkit-box-flex: 1
-  box-orient: horizontal
-  -moz-box-orient: horizontal
-  -webkit-box-orient: horizontal
-  box-align: center
-  -moz-box-align: center
-  -webkit-box-align: center
-  box-pack: center
-  -moz-box-pack: center
-  -webkit-box-pack: center
+  @include box(1, horizontal, center, center)
 
 .circle.vertical-center
-  display: box
-  display: -moz-box
-  display: -webkit-box
-  box-flex: 1
-  -moz-box-flex: 1
-  -webkit-box-flex: 1
-  box-orient: vertical
-  -moz-box-orient: vertical
-  -webkit-box-orient: vertical
-  box-align: center
-  -moz-box-align: center
-  -webkit-box-align: center
-  box-pack: center
-  -moz-box-pack: center
-  -webkit-box-pack: center
+  @include box(1, vertical, center, center)
 
 #inner-navbar-block
-  height: 0.250em
+  height: $small-height
 
 .name
-  font-size: 36px
+  font-size: $huge-font
   width: 11em
 
 .left
-  float: left
+  @extend left-float
   text-align: left
 
-#inner-navbar .left
-  text-align: center
-
 .right
-  float: right
+  @extend right-float
   text-align: right
 
 .clear-both
@@ -152,11 +153,11 @@ a:hover
 
 .header-seperator
   color: $color-dark1
-  font-size: 30px
-  width: 3em
+  font-size: $huge-font
+  width: $small-width
 
 .seperator
-  width: 3em
+  width: $small-width
   text-align: center
 
 #top-warning
@@ -171,39 +172,41 @@ a:hover
   background-color: $content-background
   color: $dark-font
   width: $site-width - 20px
-  margin-left: auto
-  margin-right: auto
+  margin:
+    left: auto
+    right: auto
 
 .inner-content
-  padding-left: 0.625em
-  padding-right: 0.625em
-  padding-top: 0.125em
-  padding-bottom: 0.125em
+  padding:
+    left: 0.625em
+    right: 0.625em
+    top: 0.125em
+    bottom: 0.125em
 
 .footer
   width: $site-width
   background-color: $color-dark2
   color: $bright-font
-  margin-top: 1.875em
-  margin-left: auto
-  margin-right: auto
+  margin:
+    top: 1.875em
+    left: auto
+    right: auto
   text-align: center
-  min-height: 3em
-  padding-top: 0.75em
-  padding-bottom: 0.75em
-
-.footer a:link
-  color: $color-light1
-
-.footer a:visited
-  color: $color-light2
-
-.footer a:active
-  color: $color-light2
+  min-height: $small-width
+  padding:
+    top: 0.75em
+    bottom: 0.75em
+  a:link
+    color: $color-light1
+  a:visited
+    color: $color-light2
+  a:active
+    color: $color-light2
 
 .inner-footer
-  margin-left: auto
-  margin-right: auto
+  margin:
+    left: auto
+    right: auto
   width: 50%
   font-size: 12px
 
@@ -214,108 +217,72 @@ h2
   color: $color-dark2
 
 .map
-  float: left
+  @extend left-float
   height: 38.5em
   width: 60%
 
 .map-right
-  float: right
+  @extend right-float
   width: 35%
 
 .circle
+  @extend left-float
+
+.left-float
   float: left
 
-#circle1
-  $circle1-dia: $circle-year*6
-  width: $circle1-dia
-  height: $circle1-dia
-  background: $color-main
-  -moz-border-radius: $circle1-dia/2
-  -webkit-border-radius: $circle1-dia/2
-  border-radius: $circle1-dia/2
-  color: $bright-font
+.right-float
+  float: right
+
+@mixin circle-format($circle-dia, $color, $font)
+  $circle-dia: $circle-year * $circle-dia
+  background: $color
+  -moz-border-radius: $circle-dia/2
+  -webkit-border-radius: $circle-dia/2
+  border-radius: $circle-dia/2
+  color: $font
   font-variant: small-caps
   text-align: center
+
+#circle1
+  @include circle-format(6, $color-main, $bright-font)
 
 #circle2
-  $circle2-dia: $circle-year * 3
-  width: $circle2-dia
-  height: $circle2-dia
-  background: $color-main
-  -moz-border-radius: $circle2-dia/2
-  -webkit-border-radius: $circle2-dia/2
-  border-radius: $circle2-dia/2
-  color: $bright-font
-  font-variant: small-caps
-  text-align: center
+  @include circle-format(3, $color-main, $bright-font)
 
 #circle2-first
-  $circle2-dia: $circle-year * 3
-  width: $circle2-dia
-  height: $circle2-dia
-  background: $color-dark1
-  -moz-border-radius: $circle2-dia/2
-  -webkit-border-radius: $circle2-dia/2
-  border-radius: $circle2-dia/2
-  color: $bright-font
-  font-variant: small-caps
-  text-align: center
+  @include circle-format(3, $color-dark1, $bright-font)
 
 #circle3
-  $circle3-dia: $circle-year * 5
-  width: $circle3-dia
-  height: $circle3-dia
-  background: $color-main
-  -moz-border-radius: $circle3-dia/2
-  -webkit-border-radius: $circle3-dia/2
-  border-radius: $circle3-dia/2
-  color: $bright-font
-  font-variant: small-caps
-  text-align: center
+  @include circle-format(5, $color-main, $bright-font)
 
 #circle4
-  $circle4-dia: $circle-year * 1.25
-  width: $circle4-dia
-  height: $circle4-dia
-  background: $color-dark1
-  -moz-border-radius: $circle4-dia/2
-  -webkit-border-radius: $circle4-dia/2
-  border-radius: $circle4-dia/2
-  color: $bright-font
-  font-variant: small-caps
-  text-align: center
+  @include circle-format(1.25, $color-dark1, $bright-font)
 
 #circle5
-  $circle5-dia: $circle-year * 0.25
-  width: $circle5-dia
-  height: $circle5-dia
-  background: $color-dark1
-  -moz-border-radius: $circle5-dia/2
-  -webkit-border-radius: $circle5-dia/2
-  border-radius: $circle5-dia/2
-  color: $bright-font
-  font-variant: small-caps
-  text-align: center
+  @include circle-format(0.25, $color-dark1, $bright-font)
 
 .school-name
-  font-size: 20px
+  font-size: $large-font
 
 .work-item
   float: left
   width: 14.5em
   height: 13.5em
-  margin-left: 0.25em
-  margin-right: 0.25em
+  margin:
+    left: $small-margin
+    right: $small-margin
   background-color: $color-dark2
 
 .work-item img
   opacity: 0.75
 
 .inner-work-item
-  width: 13em
-  margin-left: auto
-  margin-right: auto
-  margin-top: 0.5em
+  width: $large-width
+  margin:
+    left: auto
+    right: auto
+    top: 0.5em
 
 .work-item:hover
   background-color: $color-dark1
