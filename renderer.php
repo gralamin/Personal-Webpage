@@ -1,5 +1,6 @@
 <?php
 require_once("models".DIRECTORY_SEPARATOR."workItem.php");
+require_once("models".DIRECTORY_SEPARATOR."workText.php");
 
 $BOLD_TAG = "<b>";
 $BOLD_TAG_END = "</b>";
@@ -92,7 +93,7 @@ function parseLink($div, $match) {
     $url = "";
     $text = "";
     if (preg_match('/article=(\d+)/', $mth, $articleMatch) == 1) {
-        $url = "work.php?id=" . $articleMatch[1];
+        $url = "?p=article&id=" . $articleMatch[1];
         $article = new WorkItem();
         $articleNum = 0 + $articleMatch[1]; // Converts to int
         $title = $article->getTitle($articleNum);

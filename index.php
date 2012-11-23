@@ -10,12 +10,10 @@ if (!isset($_SESSION[USR_ID]) ) {
 
 $curPage = curPageURL();
 
+$page = NULL;
 if (!empty($_GET)) {
     if (isset($_GET["p"])) {
         $page = $_GET["p"];
-    }
-    else {
-        $page = NULL;
     }
 }
 
@@ -28,6 +26,9 @@ else if ($page == "contact") {
 }
 else if ($page == "work") {
     include("pages/work.php");
+}
+else if ($page == "article") {
+    include("pages/article.php");
 }
 else {
     include("pages/index.php");

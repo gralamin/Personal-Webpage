@@ -1,5 +1,6 @@
 <?php
 require_once("base.php");
+require_once("author.php");
 
 class WorkItem extends Model {
     function __construct() {
@@ -29,12 +30,30 @@ class WorkItem extends Model {
     }
 
     public function getTitle($id) {
+        return $this->getField($id, "name");
+    }
+
+    public function getRepoUrl($id) {
+        return $this->getField($id, "repository_url");
+    }
+
+    public function getDate($id) {
+        return $this->getField($id, "submission_date");
+    }
+
+    public function getAuthorLink($id) {
+        $aid = $this->getField($id, "author_id");
+        $auth = new Author();
+        return $auth->getMailToLink($id);
+    }
+
+    private function getField($id, $field) {
         $db = Database::getInstance();
-        $query = "SELECT name FROM WorkItem WHERE id = " . $id;
+        $query = "SELECT " . $field . " FROM WorkItem WHERE id = " . $id;
         $ret = "Invalid article";
         if ($result = $db->query($query)) {
             $row = $result->fetch_array();
-            $ret = $row['name'];
+            $ret = $row[$field];
         } else {
             print $db->getError();
         }
