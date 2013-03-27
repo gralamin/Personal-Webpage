@@ -5,20 +5,31 @@
 <body style='color: white; background-color: grey'>
      <div style='width: 800px; margin-left: auto; margin-right: auto; margin-top: 10px; background-color: black; padding: 10px 10px 10px 10px'>
 <?php
+error_reporting( E_ALL );
+ini_set( 'display_errors', 1 );
+     echo("Requiring colors<br>");
 require_once("colors.php");
+     echo("Requiring settings<br>");
 require_once("settings.php");
+     echo("Requiring renderer<br>");
 require_once("renderer.php");
+     echo("Requiring authors<br>");
 require_once("models".DIRECTORY_SEPARATOR."author.php");
+     echo("Requiring workGallery<br>");
 require_once("models".DIRECTORY_SEPARATOR."workGallery.php");
+     echo("Requiring workItem<br>");
 require_once("models".DIRECTORY_SEPARATOR."workItem.php");
+     echo("Requiring workText<br>");
 require_once("models".DIRECTORY_SEPARATOR."workText.php");
+     echo("Requiring main<br>");
 require_once("models".DIRECTORY_SEPARATOR."main.php");
+     echo("Done-requiring<br>");
 
 myPrint("Step 1: Please edit settings.php to have a user name, password, and database.", ColorEnum::BLUE);
 
 myPrint("Step 2: Connecting to mysql.", ColorEnum::BLUE);
 
-$con = new mysqli("localhost", $user_name, $password);
+$con = new mysqli("localhost", Settings::user_name, Settings::password);
 
 if (mysqli_connect_errno()) {
     myPrint("Failed to connect!", ColorEnum::RED);
@@ -29,16 +40,20 @@ myPrint("Connected Successfully!", ColorEnum::GREEN);
 
 myPrint("Step 3: Checking if database created.", ColorEnum::BLUE);
 
-$success = $con->select_db($database);
+$success = $con->select_db(Settings::database);
 if (!$success) {
     myPrint("Warning: DB Not created. Attempting to create DB.", ColorEnum::YELLOW);
-    if (!$con->query("CREATE DATABASE " . $database)) {
-        myPrint("Could not create database " . $database, ColorEnum::RED);
+    if (!$con->query("CREATE DATABASE " . Settings::database)) {
+        myPrint("Could not create database " . Settings::database, ColorEnum::RED);
         $con->close();
         die("( " . $con->errno . " ) " . $con->error);
     } else {
-        $con->select_db($database);
-        myPrint("DB created Successfully.", ColorEnum::GREEN);
+        $success = $con->select_db(Settings::database);
+        if ($success) {
+            myPrint("DB created Successfully.", ColorEnum::GREEN);
+        } else {
+            throw new Exception("Could not select db just created");
+        }
     }
 }
 myPrint("DB Selected Successfully.", ColorEnum::GREEN);
@@ -99,7 +114,7 @@ if ($myWorkImage->createRow(array('work_id' => 1,
 }
 
 myPrint("Attempting to display image with id 1:", ColorEnum::PURPLE);
-print("<img src=\"/test/images.php?id=1\">");
+print("<img src=\"/personal/images.php?id=1\">");
 
 myPrint("Install Successful!", ColorEnum::GREEN);
 

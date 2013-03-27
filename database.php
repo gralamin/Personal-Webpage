@@ -16,11 +16,9 @@ class Database {
     }
 
     private function connect() {
-        global $user_name;
-        global $password;
-        global $database;
         if ($this->con == NULL) {
-            $this->con = new mysqli("localhost", $user_name, $password, $database);
+            $this->con = new mysqli("localhost", Settings::user_name,
+                                    Settings::password, Settings::database);
         }
     }
 

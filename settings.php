@@ -1,8 +1,11 @@
 <?php
-error_reporting( -1 );
+error_reporting( E_ALL );
 ini_set( 'display_errors', 1 );
 
-$user_name = 'gral_cms';
-$password = 'password';
-$database = 'gral_cms';
+class Settings {
+
+    const user_name = 'gral_cms';
+    const password = 'password';
+    const database = 'gral_cms';
+}
 ?>
