@@ -140,13 +140,19 @@ a
   font-size: $huge-font
   width: 11em
 
-.left
-  @extend left-float
+.non-float-left
   text-align: left
 
-.right
-  @extend right-float
+.left
+  @extend .left-float
+  text-align: left
+
+.non-float-right
   text-align: right
+
+.right
+  @extend .right-float
+  @extend .non-float-right
 
 .clear-both
   clear: both
@@ -217,16 +223,16 @@ h2
   color: $color-dark2
 
 .map
-  @extend left-float
+  @extend .left-float
   height: 38.5em
   width: 60%
 
 .map-right
-  @extend right-float
+  @extend .right-float
   width: 35%
 
 .circle
-  @extend left-float
+  @extend .left-float
 
 .left-float
   float: left
@@ -243,6 +249,8 @@ h2
   color: $font
   font-variant: small-caps
   text-align: center
+  width: $circle-dia
+  height: $circle-dia
 
 #circle1
   @include circle-format(6, $color-main, $bright-font)

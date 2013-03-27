@@ -20,25 +20,25 @@
         <div id="navbar">
             <div id="inner-navbar-block"></div>
             <div id="inner-navbar" class="vertical-center">
-                <div class="left name vertical-center">
+                <div class="non-float-left name vertical-center">
                     <a href="/index.php">Glen Nelson</a>
                 </div>
-                <div class="right">
+                <div class="non-float-right">
                     <a href="/?p=work">Work</a>
                 </div>
-                <div class="right seperator">
+                <div class="non-float-right seperator">
                     <span class="header-seperator">|</span>
                 </div>
-                <div class="right">
+                <div class="non-float-right">
                     <a href="/?p=about">About</a>
                 </div>
-                <div class="right seperator">
+                <div class="non-float-right seperator">
                     <span class="header-seperator">|</span>
                 </div>
-                <div class="right">
+                <div class="non-float-right">
                     <a href="/?p=contact">Contact</a>
                 </div>
-                <div class="right seperator">
+                <div class="non-float-right seperator">
                     <span class="header-seperator">|</span>
                 </div>
                 <div class="clearboth"></div>
