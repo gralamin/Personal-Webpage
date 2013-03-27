@@ -114,7 +114,10 @@ if ($myWorkImage->createRow(array('work_id' => 1,
 }
 
 myPrint("Attempting to display image with id 1:", ColorEnum::PURPLE);
-print("<img src=\"/personal/images.php?id=1\">");
+print("<img src=\"" . Settings::path_from_root .  "images.php?id=1\">");
+
+myPrint("Attempting to display thumbnail for image with id 1 and height of width of 100px:", ColorEnum::PURPLE);
+print("<img src=\"" . Settings::path_from_root .  "thumbnail.php?id=1&width=100\">");
 
 myPrint("Install Successful!", ColorEnum::GREEN);
 

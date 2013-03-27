@@ -15,7 +15,10 @@ if ($id) {
     $db = Database::getInstance();
     if ($result = $db->query("SELECT img FROM WorkGallery WHERE id = " . $id)) {
         $row = $result->fetch_array();
-        echo $row['img'];
+        header('Content-Type: image/png');
+        $virtual_image = imagecreatefromstring($row['img']);
+        imagepng($virtual_image);
+        imagedestroy($virtual_image);
     } else {
         print $db->getError();
     }
