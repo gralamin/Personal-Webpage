@@ -1,7 +1,7 @@
 <?php
 /* Grabs an article from the given id, and renders it.
  */
-require_once("models/workText.php");
+require_once("models".DIRECTORY_SEPARATOR."workText.php");
 require_once("renderer.php");
 
 $id = NULL;

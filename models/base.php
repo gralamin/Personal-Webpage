@@ -35,17 +35,32 @@ abstract class Model {
         return False;
     }
 
-    protected function getValue($bindParam, $column, $conditionalColumn) {
+    protected function getValue($query, $parameters) {
         $con = Database::getInstance();
-        $query = "SELECT name FROM " . $this->table_name . "WHERE id = " . $id;
         $stmt = $con->prepare($query);
-        $stmt = $bindParam->bind($stmt);
-        $rows = [];
+        $rows = array();
+        $parameters->bind($stmt);
+        $files = NULL;
         if (!$stmt->execute()) {
             print("<br>Retriving value failed " . $con->getError());
         } else {
-            while ($row = $stmt->fetch()) {
-                $rows->append($row);
+            if ($files == NULL) {
+                $metaResults = $stmt->result_metadata();
+                $fields = $metaResults->fetch_fields();
+                $statementParams = "";
+                foreach ($fields as $field){
+                    if (empty($statementParams)) {
+                        $statementParams .= "\$column['".$field->name."']";
+                    } else {
+                        $statementParams .= ", \$column['".$field->name."']";
+                    }
+                }
+            }
+            $statment="\$stmt->bind_result($statementParams);";
+            # TODO: Find a way to avoid the eval.
+            eval($statment);
+            while ($stmt->fetch()) {
+                $rows[] = $column;
             }
         }
         $stmt->close();

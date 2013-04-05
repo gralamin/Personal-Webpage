@@ -24,18 +24,14 @@ class WorkText extends Model {
         return $this->insertValues($bindParam, "work_id, body", $blobs);
     }
 
-    public function retrieveText($id) {
-        /* This function is not fit for production */
-        $text = "";
-        $db = Database::getInstance();
-        if ($result = $db->query("SELECT * FROM WorkText WHERE work_id = " . $id)) {
-            $row = $result->fetch_array();
-            $text = $row['body'];
-        } else {
-            print $db->getError();
+    public function getRow($id) {
+        $query = "SELECT * FROM WorkText WHERE work_id = ?";
+        $bindParam = new BindParam();
+        $bindParam->add('i', $id);
+        $rows = $this->getValue($query, $bindParam);
+        foreach ($rows as $row) {
+            return $row;
         }
-        $db->close();
-        return $text;
     }
 }
 
