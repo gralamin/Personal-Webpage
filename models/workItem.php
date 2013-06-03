@@ -41,6 +41,32 @@ class WorkItem extends Model {
         return $this->getField($id, "submission_date");
     }
 
+    public function isNew($id) {
+        // A post is new, if: It is the last post made
+        // or if it was made in the last week.
+        if ($id == $this->getLatest())
+            return True;
+        $date = $this->getDate($id);
+        $cur = new DateTime();
+        $sub = new DateTime($date);
+
+        $val = $cur.diff($sub);
+        return $val->days <= 7;
+    }
+
+    public function getLatest() {
+        $query = "SELECT id FROM WorkItem ORDER BY submission_date LIMIT ?";
+        $lim = 1;
+        $bindParam = new BindParam();
+        $bindParam->add('i', $lim);
+        $rows = $this->getValue($query, $bindParam);
+        $ret = "Invalid Article";
+        foreach ($rows as $row) {
+            $ret = $row["id"];
+        }
+        return $ret;
+    }
+
     public function getAuthorLink($id) {
         $aid = $this->getField($id, "author_id");
         $auth = new Author();
@@ -48,16 +74,14 @@ class WorkItem extends Model {
     }
 
     private function getField($id, $field) {
-        $db = Database::getInstance();
-        $query = "SELECT " . $field . " FROM WorkItem WHERE id = " . $id;
+        $query = "SELECT " . $field . " FROM WorkItem WHERE id = ?";
+        $bindParam = new BindParam();
+        $bindParam->add('i', $id);
+        $rows = $this->getValue($query, $bindParam);
         $ret = "Invalid article";
-        if ($result = $db->query($query)) {
-            $row = $result->fetch_array();
+        foreach ($rows as $row) {
             $ret = $row[$field];
-        } else {
-            print $db->getError();
         }
-        $db->close();
         return $ret;
     }
 }
