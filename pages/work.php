@@ -35,7 +35,8 @@
      }
 
 $aWorkItem = new WorkItem();
-foreach($aWorkItem->getIdList() as $id) {
+$idList = $aWorkItem->getIdList();
+foreach($idList as $id) {
     createWorkItem($id);
 }
 ?>

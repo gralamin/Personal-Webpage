@@ -50,6 +50,7 @@ abstract class Model {
                 $metaResults = $stmt->result_metadata();
                 $fields = $metaResults->fetch_fields();
                 $statementParams = "";
+                $column = array();
                 foreach ($fields as $field){
                     if (empty($statementParams)) {
                         $statementParams .= "\$column['".$field->name."']";
@@ -62,7 +63,7 @@ abstract class Model {
             # TODO: Find a way to avoid the eval.
             eval($statment);
             while ($stmt->fetch()) {
-                $rows[] = $column;
+                array_push($rows, arrayCopy($column));
             }
         }
         $stmt->close();
@@ -101,5 +102,19 @@ abstract class Model {
     public function createRow($array) {
         print "Create a BindParam based on array, and pass to insertValues";
     }
+}
+
+function arrayCopy( array $array ) {
+    $result = array();
+    foreach( $array as $key => $val ) {
+        if( is_array( $val ) ) {
+            $result[$key] = arrayCopy( $val );
+        } elseif ( is_object( $val ) ) {
+            $result[$key] = clone $val;
+        } else {
+            $result[$key] = $val;
+        }
+    }
+    return $result;
 }
 ?>

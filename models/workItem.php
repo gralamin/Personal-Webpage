@@ -51,12 +51,13 @@ class WorkItem extends Model {
         $cur = new DateTime();
         $sub = new DateTime($date);
 
-        $val = $cur.diff($sub);
+        $val = $cur->diff($sub);
         return $val->days <= 7;
     }
 
     public function getLatest() {
-        $query = "SELECT id FROM WorkItem ORDER BY submission_date LIMIT ?";
+        $query = "SELECT id FROM WorkItem ORDER BY submission_date DESC " .
+            "LIMIT ?";
         $lim = 1;
         $bindParam = new BindParam();
         $bindParam->add('i', $lim);
