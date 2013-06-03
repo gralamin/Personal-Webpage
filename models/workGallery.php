@@ -1,6 +1,10 @@
 <?php
 require_once("models".DIRECTORY_SEPARATOR."base.php");
 require_once("models".DIRECTORY_SEPARATOR."blob.php");
+require_once("settings.php");
+
+$BASE_IMAGE_PATH = Settings::path_from_root . "images.php?id=";
+$THUMBNAIL_IMAGE_PATH = Settings::path_from_root . "thumbnail.php?id=";
 
 class WorkGallery extends Model {
     function __construct() {
@@ -47,6 +51,23 @@ class WorkGallery extends Model {
         foreach ($rows as $row) {
             return make_thumb($row['img'], $width);
         }
+    }
+
+    public function getGallery($workId, $width=100) {
+        global $THUMBNAIL_IMAGE_PATH;
+        global $BASE_IMAGE_PATH;
+        $query = "SELECT id FROM WorkGallery WHERE work_id = ?";
+        $bindParam = new BindParam();
+        $bindParam->add('i', $workId);
+        $rows = $this->getValue($query, $bindParam);
+        $galleryUrls = array();
+        foreach ($rows as $row) {
+            $thumbnailAndPath = array($THUMBNAIL_IMAGE_PATH . $row['id'] .
+                                      "&width=" . $width, $BASE_IMAGE_PATH .
+                                      $row['id']);
+            array_push($galleryUrls, $thumbnailAndPath);
+        }
+        return $galleryUrls;
     }
 }
 

@@ -31,6 +31,10 @@ $small-width: 3em
 $large-font: 20px
 $huge-font: 36px
 
+$thick-border: 0.750em
+$thin-border: 0.188em
+$minimal-border: 0.063em
+
 @mixin linear-gradient($start, $firstColor, $firstPercent, $secondColor, $secondPercent)
   background:
     image: linear-gradient($start, $firstColor $firstPercent + "%", $secondColor $secondPercent + "%")
@@ -306,3 +310,42 @@ h2
   color: $dark-font
   font-weight: normal
   opacity: 0.1
+
+/** Articles **/
+.author
+  margin-bottom: $small-margin
+
+.title
+  margin-bottom: $small-margin
+
+.date
+  margin-bottom: $small-margin
+
+.repository
+  margin-bottom: $small-margin
+
+.article
+  margin-top: $small-margin * 2
+  margin-bottom: $small-margin
+
+.article div
+  margin-bottom: $small-margin * 2
+
+.source
+  margin-top: $small-margin
+
+.gallery
+  width: 75%
+  margin: auto
+  border: $thick-border solid $color-dark1
+  background-color: $color-main
+
+.gallery img
+  border: $thin-border solid $color-dark2
+  &:hover
+    border: $thin-border solid $color-light2
+
+.outerImg
+  border: $thin-border solid black
+  margin: $small-margin $small-margin
+  display: inline-block

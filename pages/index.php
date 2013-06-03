@@ -1,4 +1,4 @@
-<div class="content background-me">
+<div class="content">
     <div class="inner-content">
         <div class="left" style="width: 50%">
             <h1>Hello, I'm <span class="emphasis">Glen Nelson</span><br>
