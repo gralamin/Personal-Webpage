@@ -1,7 +1,7 @@
 <?php
 /** Simple PHP function for making thumbnails
  **/
-require_once("models".DIRECTORY_SEPARATOR."workGallery.php");
+require_once("models".DIRECTORY_SEPARATOR."image.php");
 
 $id = NULL;
 $width = 100;
@@ -15,7 +15,7 @@ if (!empty($_GET)) {
 }
 
 if ($id) {
-    $gallery = new WorkGallery();
+    $gallery = new Image();
     $retval = $gallery->getThumbnail($id, $width);
     header('Content-Type: image/png');
     imagepng($retval);

@@ -1,7 +1,7 @@
 <?php
 /* Simple php site that reads the url and opens an image based on the
  * url. */
-require_once("models".DIRECTORY_SEPARATOR."workGallery.php");
+require_once("models".DIRECTORY_SEPARATOR."image.php");
 
 $id = NULL;
 if (!empty($_GET)) {
@@ -11,7 +11,7 @@ if (!empty($_GET)) {
 }
 
 if ($id) {
-    $gallery = new WorkGallery();
+    $gallery = new Image();
     $retval = $gallery->getRow($id);
     if ($retval != NULL) {
         header('Content-Type: image/png');

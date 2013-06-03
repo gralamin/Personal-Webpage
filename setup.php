@@ -17,6 +17,8 @@ require_once("renderer.php");
 require_once("models".DIRECTORY_SEPARATOR."author.php");
      echo("Requiring workGallery<br>");
 require_once("models".DIRECTORY_SEPARATOR."workGallery.php");
+     echo("Requiring image<br>");
+require_once("models".DIRECTORY_SEPARATOR."image.php");
      echo("Requiring workItem<br>");
 require_once("models".DIRECTORY_SEPARATOR."workItem.php");
      echo("Requiring workText<br>");
@@ -116,18 +118,26 @@ print("<div class='article-src'>");
 renderArticle(1, TRUE);
 print("</div>");
 
-myPrint("Attempting to make Gallery", ColorEnum::PURPLE);
+myPrint("Attempting to upload Image", ColorEnum::PURPLE);
 
-$myWorkImage = new WorkGallery();
-if ($myWorkImage->createRow(array('work_id' => 1,
-                                  'img' => 'images/personal-website.png',
-                                  'caption' => "v1.0 of the website"
-))) {
+$myWorkImage = new Image();
+if ($myWorkImage->createRow(array('img' => 'images/personal-website.png'))) {
     myPrint("Created work image successfully", ColorEnum::GREEN);
 } else {
     myPrint("Failed to insert work image. Please check if the error is due " .
             "to a duplicate, and ensure the file is less then " .
             Settings::max_file_size . " bytes in size", ColorEnum::YELLOW);
+}
+
+myPrint("Associating Image with work item 1", ColorEnum::PURPLE);
+$myWorkGallery = new WorkGallery();
+if ($myWorkGallery->createRow(array('work_id' => 1,
+                                  'image_id' => 1,
+                                  'caption' => "v1.0 of the website"
+))) {
+    myPrint("Associated Work Image successfully", ColorEnum::GREEN);
+} else {
+    myPrint("Failed to Associate Work Image", ColorEnum::RED);
 }
 
 myPrint("Attempting to display image with id 1:", ColorEnum::PURPLE);
