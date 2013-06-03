@@ -1,11 +1,22 @@
 <?php
 
+
 require_once("util.php");
 
 session_start();
 
-if (!isset($_SESSION[USR_ID]) ) {
+if (!isset($_SESSION["USR_ID"]) ) {
     session_defaults();
+}
+
+require_once("docBegin.php");
+if (!isset($_SESSION["firsttime"]) ) {
+    $_SESSION["firsttime"] = 1;
+    echo('<div id="top-warning">' .
+         'This page uses CSS3 that is not implemented in most browsers yet.' .
+         'This page may not display properly.' .
+         '<input type="button" value="X" />' .
+         '</div>');
 }
 
 $curPage = curPageURL();
