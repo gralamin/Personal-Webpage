@@ -25,7 +25,8 @@ require_once("models".DIRECTORY_SEPARATOR."workText.php");
 require_once("models".DIRECTORY_SEPARATOR."main.php");
      echo("Done-requiring<br>");
 
-myPrint("Step 1: Please edit settings.php to have a user name, password, and database.", ColorEnum::BLUE);
+myPrint("Step 1: Please edit settings.php to have a user name, password, " .
+        "and database.", ColorEnum::BLUE);
 
 myPrint("Step 2: Connecting to mysql.", ColorEnum::BLUE);
 
@@ -42,9 +43,11 @@ myPrint("Step 3: Checking if database created.", ColorEnum::BLUE);
 
 $success = $con->select_db(Settings::database);
 if (!$success) {
-    myPrint("Warning: DB Not created. Attempting to create DB.", ColorEnum::YELLOW);
+    myPrint("Warning: DB Not created. Attempting to create DB.",
+            ColorEnum::YELLOW);
     if (!$con->query("CREATE DATABASE " . Settings::database)) {
-        myPrint("Could not create database " . Settings::database, ColorEnum::RED);
+        myPrint("Could not create database " . Settings::database,
+                ColorEnum::RED);
         $con->close();
         die("( " . $con->errno . " ) " . $con->error);
     } else {
@@ -59,34 +62,41 @@ if (!$success) {
 myPrint("DB Selected Successfully.", ColorEnum::GREEN);
 $con->close();
 
-myPrint("Step 4: Check if all tables exist, and create any table that does not.", ColorEnum::BLUE);
+myPrint("Step 4: Check if all tables exist, and create any table that does " .
+        "not.", ColorEnum::BLUE);
 foreach ($ALL_MODEL_LIST as $modelName) {
     $model = new $modelName();
     checkTable($model);
 }
 
 myPrint("Step 5: Insert basic data.", ColorEnum::BLUE);
-myPrint("Data to insert: author: Glen Nelson gralamin@gralamin.com", ColorEnum::PURPLE);
+myPrint("Data to insert: author: Glen Nelson gralamin@gralamin.com",
+        ColorEnum::PURPLE);
 $myAuthor = new Author();
 if ($myAuthor->createRow(array('first_name' => 'Glen',
                                'last_name' => 'Nelson',
                                'email' => 'gralamin@gralamin.com'))) {
     myPrint("Inserted Glen Nelson successfully", ColorEnum::GREEN);
 } else {
-    myPrint("Failed to insert Glen Nelson. Please check if the error is due to a duplicate", ColorEnum::YELLOW);
+    myPrint("Failed to insert Glen Nelson. Please check if the error is due " .
+            "to a duplicate", ColorEnum::YELLOW);
 }
 
-myPrint("Data to insert: workItem: 'Website Source code' https://github.com/gralamin/Personal-Webpage TODAY 1", ColorEnum::PURPLE);
+$myRepo = "https://github.com/gralamin/Personal-Webpage";
+myPrint("Data to insert: workItem: 'Website Source code' " .
+        $myRepo . "TODAY 1",
+        ColorEnum::PURPLE);
 // set the default timezone to use. Available since PHP 5.1
 date_default_timezone_set('MST');
 $myWorkItem = new WorkItem();
 if ($myWorkItem->createRow(array('name' => 'Website Source Code',
-                                 'repository_url' => 'https://github.com/gralamin/Personal-Webpage',
+                                 'repository_url' => $myRepo,
                                  'submission_date' => date("Y-m-d H:i:s"),
                                  'author_id' => 1))) {
     myPrint("Created work item successfully", ColorEnum::GREEN);
 } else {
-    myPrint("Failed to insert work item. Please check if the error is due to a duplicate", ColorEnum::YELLOW);
+    myPrint("Failed to insert work item. Please check if the error is due" .
+    "to a duplicate", ColorEnum::YELLOW);
 }
 
 $myWorkText = new WorkText();
@@ -94,7 +104,8 @@ if ($myWorkText->createRow(array('work_id' => 1,
                                  'body' => 'article.txt'))) {
     myPrint("Created work text successfully", ColorEnum::GREEN);
 } else {
-    myPrint("Failed to insert work text. Please check if the error is due to a duplicate", ColorEnum::YELLOW);
+    myPrint("Failed to insert work text. Please check if the error is due " .
+    "to a duplicate", ColorEnum::YELLOW);
 }
 
 myPrint("Attempting to display work text in a pre tag", ColorEnum::PURPLE);
@@ -105,29 +116,39 @@ print("<div class='article-src'>");
 renderArticle(1, TRUE);
 print("</div>");
 
+myPrint("Attempting to make Gallery", ColorEnum::PURPLE);
+
 $myWorkImage = new WorkGallery();
 if ($myWorkImage->createRow(array('work_id' => 1,
-                                  'img' => 'images/personal-website.png'))) {
+                                  'img' => 'images/personal-website.png',
+                                  'caption' => "v1.0 of the website"
+))) {
     myPrint("Created work image successfully", ColorEnum::GREEN);
 } else {
-    myPrint("Failed to insert work image. Please check if the error is due to a duplicate", ColorEnum::YELLOW);
+    myPrint("Failed to insert work image. Please check if the error is due " .
+            "to a duplicate, and ensure the file is less then " .
+            Settings::max_file_size . " bytes in size", ColorEnum::YELLOW);
 }
 
 myPrint("Attempting to display image with id 1:", ColorEnum::PURPLE);
 print("<img src=\"" . Settings::path_from_root .  "images.php?id=1\">");
 
-myPrint("Attempting to display thumbnail for image with id 1 and height of width of 100px:", ColorEnum::PURPLE);
-print("<img src=\"" . Settings::path_from_root .  "thumbnail.php?id=1&width=100\">");
+myPrint("Attempting to display thumbnail for image with id 1 and height of " .
+        "width of 100px:", ColorEnum::PURPLE);
+print("<img src=\"" . Settings::path_from_root .
+       "thumbnail.php?id=1&width=100\">");
 
 myPrint("Install Successful!", ColorEnum::GREEN);
 
 function checkTable($tableModel) {
     $tableName = $tableModel->getName();
-    myPrint("Checking if table \"" . $tableName . "\" exists", ColorEnum::PURPLE);
+    myPrint("Checking if table \"" . $tableName . "\" exists",
+                ColorEnum::PURPLE);
     if($tableModel->exists()) {
         myPrint($tableName . " exists!", ColorEnum::GREEN);
     } else {
-        $printableSchema = "<br>" . str_replace("\n", "<br>", $tableModel->getSchema()) . "<br>";
+        $printableSchema = "<br>" .
+            str_replace("\n", "<br>", $tableModel->getSchema()) . "<br>";
         myPrint($tableName . " does not exist. Creating with schema \"" .
                 $printableSchema . "\".", ColorEnum::YELLOW);
         if ($tableModel->create()) {

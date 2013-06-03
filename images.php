@@ -13,9 +13,14 @@ if (!empty($_GET)) {
 if ($id) {
     $gallery = new WorkGallery();
     $retval = $gallery->getRow($id);
-    header('Content-Type: image/png');
-    imagepng($retval);
-    imagedestroy($retval);
+    if ($retval != NULL) {
+        header('Content-Type: image/png');
+        imagepng($retval);
+        imagedestroy($retval);
+    } else {
+        print("No image found.<br>");
+        print_r($_GET);
+    }
 } else {
     print("No image found.<br>");
     print_r($_GET);

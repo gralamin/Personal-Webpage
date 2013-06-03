@@ -73,6 +73,7 @@ abstract class Model {
         $status = True;
         $query = "INSERT INTO " . $this->table_name . " (" . $columns .
             ") VALUES (" . $bindParam->getInsertValuesMarks() . ")";
+
         $stmt = $con->prepare($query);
         $stmt = $bindParam->bind($stmt);
 

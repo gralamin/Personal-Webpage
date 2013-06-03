@@ -8,7 +8,6 @@ $color-dark1: #BF6030
 $color-dark2: #A63800
 $bright-font: #FFFFFF
 $dark-font: #000000
-$small-font-size: 16px
 $header-hover: #EEEEEE
 $content-background: #FFFFFF
 $font-name: "Copse"
@@ -28,6 +27,8 @@ $small-margin: 0.250em
 $large-width: 13em
 $small-width: 3em
 
+$tiny-font-size: 12px
+$small-font-size: 16px
 $large-font: 20px
 $huge-font: 36px
 
@@ -149,7 +150,7 @@ a
 
 .left
   @extend .left-float
-  text-align: left
+  @extend .non-float-left
 
 .non-float-right
   text-align: right
@@ -157,6 +158,9 @@ a
 .right
   @extend .right-float
   @extend .non-float-right
+
+.center-only
+  text-align: center
 
 .clear-both
   clear: both
@@ -314,15 +318,28 @@ h2
 /** Articles **/
 .author
   margin-bottom: $small-margin
+  width: 33%
+  font-size: $tiny-font-size
+  display: inline-block
+  text-align: right
 
 .title
   margin-bottom: $small-margin
+  text-align: center
 
 .date
   margin-bottom: $small-margin
+  width: 33%
+  font-size: $tiny-font-size
+  display: inline-block
+  text-align: center
 
 .repository
   margin-bottom: $small-margin
+  width: 33%
+  font-size: $tiny-font-size
+  display: inline-block
+  text-align: left
 
 .article
   margin-top: $small-margin * 2
@@ -349,3 +366,7 @@ h2
   border: $thin-border solid black
   margin: $small-margin $small-margin
   display: inline-block
+
+.centerer
+  width: $large-width * 3.5
+  margin: auto
