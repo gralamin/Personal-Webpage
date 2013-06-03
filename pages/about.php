@@ -6,7 +6,7 @@
                 University of Alberta in April 2013. As part of my program, I spent
                 16 months as an intern at EMC Corporation, working on an Automation
                 Framework. In addition, I have spent 4 months as a web developer for
-                <a href="https://www.muchlearning.org/">muchlearning.ca</a>.</p>
+                <a href="https://www.muchlearning.org/">muchlearning.org</a>.</p>
 
             <h2>Why use the net moniker 'gralamin' in your domain name?</h2>
             <p>I choose the moniker as my domain name, because I felt it is an

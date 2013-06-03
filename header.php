@@ -1,3 +1,6 @@
+<?php
+require_once("settings.php");
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
@@ -20,22 +23,32 @@
             <div id="inner-navbar-block"></div>
             <div id="inner-navbar" class="vertical-center">
                 <div class="non-float-left name vertical-center">
-                    <a href="/index.php">Glen Nelson</a>
+<?php
+    $path = Settings::path_from_root;
+    $title = Settings::site_title;
+    echo ('<a href="' . $path . '">' . $title . '</a>');
+?>
                 </div>
                 <div class="non-float-right">
-                    <a href="/?p=work">Work</a>
+<?php
+    echo ('<a href="' . $path . '?p=work">Work</a>');
+?>
                 </div>
                 <div class="non-float-right seperator">
                     <span class="header-seperator">|</span>
                 </div>
                 <div class="non-float-right">
-                    <a href="/?p=about">About</a>
+<?php
+    echo ('<a href="' . $path . '?p=about">About</a>');
+?>
                 </div>
                 <div class="non-float-right seperator">
                     <span class="header-seperator">|</span>
                 </div>
                 <div class="non-float-right">
-                    <a href="/?p=contact">Contact</a>
+<?php
+    echo ('<a href="' . $path . '?p=contact">Contact</a>');
+?>
                 </div>
                 <div class="non-float-right seperator">
                     <span class="header-seperator">|</span>

@@ -9,6 +9,8 @@ class Settings {
     **/
     const path_from_root = "/personal/";
 
+    const site_title = "Glen Nelson";
+
     /** Database connection details. Do not use the defaults.
      **/
     const user_name = 'gral_cms';
