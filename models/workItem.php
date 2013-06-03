@@ -26,7 +26,8 @@ class WorkItem extends Model {
         $bindParam->add('s', $array['repository_url']);
         $bindParam->add('s', $array['submission_date']);
         $bindParam->add('i', $array['author_id']);
-        return $this->insertValues($bindParam, "name, repository_url, submission_date, author_id");
+        return $this->insertValues($bindParam, "name, repository_url, " .
+                                   "submission_date, author_id");
     }
 
     public function getTitle($id) {
@@ -71,6 +72,16 @@ class WorkItem extends Model {
         $aid = $this->getField($id, "author_id");
         $auth = new Author();
         return $auth->getMailToLink($id);
+    }
+
+    public function getIdList() {
+        $query = "SELECT id FROM WorkItem ORDER BY submission_date DESC";
+        $rows = $this->getValue($query, NULL);
+        $finalReturn = array();
+        foreach($rows as $row) {
+            array_push($finalReturn, $row['id']);
+        }
+        return $finalReturn;
     }
 
     private function getField($id, $field) {

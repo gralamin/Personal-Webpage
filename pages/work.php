@@ -1,15 +1,46 @@
 <div class="content">
     <div class="inner-content">
         <h1>Work</h1>
-        <p>In Development. I hope to have a simple CMS integrated here, with links to new projects,
-           etc. I work on. For now, have a link to the repository for this site.</p>
-        <div class="work-item">
-            <div class="inner-work-item">
-                <a href="https://github.com/gralamin/Personal-Webpage">
-                    <img src="images/personal-website.png" width="100%">
-                </a>
-            </div>
-        </div>
+     <p> Below is a list of different projects that I have contributed to or created.
+     </p>
+<?php
+     require_once("models".DIRECTORY_SEPARATOR."workItem.php");
+     require_once("models".DIRECTORY_SEPARATOR."workGallery.php");
+     require_once("settings.php");
+
+     function createWorkItem($id) {
+         $workItem = new WorkItem();
+         $workGallery = new WorkGallery();
+         $path = settings::path_from_root;
+         $src = $workGallery->getItemThumb($id);
+         $title = $workItem->getTitle($id);
+
+         echo('<div class="outer-work-item">');
+         if ($workItem->isNew($id)) {
+             echo('<div class="new"></div>');
+         }
+         echo('<div class="work-item">');
+         echo('    <div class="inner-work-item">');
+
+         echo('        <a href="' . $path . '?p=article&id=' . $id . '">');
+
+         echo('            <img src="' . $src . '" width="100%" title="' .
+              $title . '" alt="' . $title . '"></img>');
+
+         echo('        </a>');
+         echo('    </div>');
+         echo('    <h3>' . $title . '</h3>');
+         echo('</div>');
+         echo('</div>');
+     }
+
+$aWorkItem = new WorkItem();
+foreach($aWorkItem->getIdList() as $id) {
+    createWorkItem($id);
+}
+?>
+
         <div class="clear-both"></div>
+
     </div>
 </div>

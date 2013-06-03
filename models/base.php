@@ -37,9 +37,11 @@ abstract class Model {
 
     protected function getValue($query, $parameters) {
         $con = Database::getInstance();
-        $stmt = $con->prepare($query);
         $rows = array();
-        $parameters->bind($stmt);
+        $stmt = $con->prepare($query);
+        if ($parameters !== NULL) {
+            $parameters->bind($stmt);
+        }
         $files = NULL;
         if (!$stmt->execute()) {
             print("<br>Retriving value failed " . $con->getError());
@@ -87,9 +89,13 @@ abstract class Model {
             print("<br>Inserting values failed " . $con->getError());
             $status = False;
         };
+        $id = $stmt->insert_id;
         $stmt->close();
         $con->close();
-        return $status;
+        if (!$status)
+            return $status;
+        else
+            return $id;
     }
 
     public function createRow($array) {

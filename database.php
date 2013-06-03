@@ -36,7 +36,10 @@ class Database {
 
     public function prepare($query) {
         $this->connect();
-        return $this->con->prepare($query);
+        if (!($stmt = $this->con->prepare($query))) {
+            print $this->con->error;
+        }
+        return $stmt;
     }
 
     public function getError() {

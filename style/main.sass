@@ -36,6 +36,8 @@ $thick-border: 0.750em
 $thin-border: 0.188em
 $minimal-border: 0.063em
 
+$new-image: "../images/new.png"
+
 @mixin linear-gradient($start, $firstColor, $firstPercent, $secondColor, $secondPercent)
   background:
     image: linear-gradient($start, $firstColor $firstPercent + "%", $secondColor $secondPercent + "%")
@@ -281,14 +283,27 @@ h2
 .school-name
   font-size: $large-font
 
-.work-item
+.outer-work-item
   float: left
-  width: 14.5em
-  height: 13.5em
+  width: $large-width + 3.5em
   margin:
     left: $small-margin
     right: $small-margin
+
+.work-item
+  width: $large-width + 0.9em
+  min-height: 13.5em
+  margin:
+    left: auto
+    right: auto
   background-color: $color-dark2
+  text-align: center
+  position: relative
+
+.work-item h3
+  background-color: $color-dark1
+  margin-bottom: 2px
+
 
 .work-item img
   opacity: 0.75
@@ -299,6 +314,15 @@ h2
     left: auto
     right: auto
     top: 0.5em
+
+.new
+  background-image: url($new-image)
+  background-repeat: no-repeat
+  position: absolute
+  z-index: 10
+  width: 14.5em
+  height: 10em
+  background-position: -6px 0px
 
 .work-item:hover
   background-color: $color-dark1

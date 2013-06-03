@@ -3,7 +3,7 @@
 /* Found on http://www.php.net/manual/en/mysqli-stmt.bind-param.php */
 /* Edited to match this answer
 http://stackoverflow.com/questions/280798/is-there-a-way-to-bind-an-array-to-mysqli-prepare */
-class BindParam{
+class BindParam {
     private $values = array(), $types = '';
 
     public function add( $type, &$value ){
@@ -11,7 +11,7 @@ class BindParam{
         $this->types .= $type;
     }
 
-    public function bind($stmt){
+    public function bind($stmt) {
         $params = $this->values;
         array_unshift($params, $this->types);
         call_user_func_array( array( $stmt, 'bind_param'), $params);

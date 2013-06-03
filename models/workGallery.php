@@ -40,6 +40,22 @@ class WorkGallery extends Model {
         return NULL;
     }
 
+    public function getItemThumb($workId, $width=200) {
+        global $THUMBNAIL_IMAGE_PATH;
+        $query = "SELECT image_id FROM " . $this->table_name .
+            " WHERE work_id = ? LIMIT 1";
+
+        $bindParam = new BindParam();
+        $bindParam->add('i', $workId);
+
+        $rows = $this->getValue($query, $bindParam);
+
+        foreach ($rows as $row) {
+            return $THUMBNAIL_IMAGE_PATH . $row["image_id"] .
+                "&width=" . $width;
+        }
+    }
+
     public function getGallery($workId, $width=100) {
         global $THUMBNAIL_IMAGE_PATH;
         global $BASE_IMAGE_PATH;
