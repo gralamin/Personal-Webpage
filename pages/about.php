@@ -31,7 +31,7 @@
                     <li>Emacs</li>
                 </ul>
             </p>
-            <div class="gallery">
+            <div class="gallery-old">
                 <img src="images/me.jpg" alt="Glen Nelson" width="30%" height=""></img>
                 <img src="http://gralamin.com/images/stories/Modron.png" alt="Modron Cube Avatar" width="" height=""></img>
                 <img src="http://gralamin.com/images/stories/psion.gif" alt="Psion Avatar" width="" height=""></img>
